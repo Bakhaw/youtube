@@ -1,13 +1,26 @@
 import React from 'react';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { createGlobalStyle } from 'styled-components';
+
+import Router from './Router';
+import { theme } from './theme';
 import UpdateApp from './components/UpdateApp';
 
-export default function App() {
+const GlobalStyle = createGlobalStyle`
+  body {
+    padding: 0;
+    margin: 0;
+  }
+`;
+
+function App() {
   return (
-    <header>
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
+    <MuiThemeProvider theme={theme}>
+      <Router />
       <UpdateApp />
-    </header>
+      <GlobalStyle />
+    </MuiThemeProvider>
   );
 }
+
+export default App;
