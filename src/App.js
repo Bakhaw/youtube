@@ -7,9 +7,15 @@ import { theme } from './theme';
 import UpdateApp from './components/UpdateApp';
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+  body, ul {
     padding: 0;
     margin: 0;
+  }
+  li {
+    list-style: none;
   }
 `;
 
