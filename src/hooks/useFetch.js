@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import API from '../api';
 
-function useFetch(methodName, initialState = []) {
+function useFetch(methodName, methodParams = [], initialState = []) {
   const [data, setData] = useState(initialState);
 
   useEffect(() => {
     async function fetchData() {
-      const req = await API[methodName]();
+      const req = await API[methodName](...methodParams);
       await setData(req);
     }
 
     fetchData();
-  }, [methodName]);
+  }, [methodName, ...methodParams]);
 
   return data;
 }
