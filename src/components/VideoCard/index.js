@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 function VideoCard({ item }) {
   return (
-    <Link to={`/watch/${item.id}`}>
+    <Link to={`/watch/${item.id.videoId || item.id}`}>
       <Wrapper>
         <Thumb item={item} />
         <Description item={item} />
