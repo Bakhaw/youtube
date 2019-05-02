@@ -9,6 +9,7 @@ import UpdateApp from './components/UpdateApp';
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Roboto', sans-serif;
+    font-weight: 400;
   }
   body, ul {
     padding: 0;
@@ -16,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
   }
   li {
     list-style: none;
+  }
+  a {
+    text-decoration: none;
   }
 `;
 
