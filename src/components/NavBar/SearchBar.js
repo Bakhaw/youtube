@@ -1,67 +1,58 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import Paper from '@material-ui/core/Paper';
-import SearchIcon from '@material-ui/icons/Search';
+import styled from 'styled-components';
 
-import { AppContext } from '../../context';
-import API from '../../api';
+import Svg from '../Svg';
 
-const styles = {
-  root: {
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    background: '#eee',
-    width: 400
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1
-  },
-  iconButton: {
-    padding: 10
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid #fff0f6;
+  background: #fff0f6;
+  border-radius: 0.25rem;
+  input {
+    margin: 0 5px;
+    padding: 6px 0;
+    height: 100%;
+    width: 100%;
+    background: #fff0f6;
+    border: none;
+    outline: none;
+    color: #22292f;
+    font-size: 16px;
   }
-};
+`;
 
-function SearchBar({ classes, history }) {
+function SearchBar({ history }) {
   const [inputValue, setInputValue] = useState('');
 
   function handleInputChange(e) {
     setInputValue(e.target.value);
   }
 
-  const { setSearchResults } = useContext(AppContext);
   async function handleSubmit(e) {
     e.preventDefault();
     if (inputValue.length === 0) return;
 
-    const data = await API.searchByQuery(inputValue);
-    await setSearchResults(data);
-    history.push('/search');
+    history.push(`/search/${inputValue}`);
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Paper className={classes.root} elevation={1}>
-        <InputBase
-          className={classes.input}
-          onChange={handleInputChange}
-          placeholder='Search YouTube'
-          value={inputValue}
-        />
-        <IconButton
-          aria-label='Search'
-          className={classes.iconButton}
-          onClick={handleSubmit}
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper>
-    </form>
+    <div className='SearchBar'>
+      <form onSubmit={handleSubmit}>
+        <InputWrapper>
+          <Svg type='search' />
+          <input
+            onChange={handleInputChange}
+            placeholder='Search...'
+            type='text'
+            value={inputValue}
+          />
+        </InputWrapper>
+      </form>
+    </div>
   );
 }
 
-export default withStyles(styles)(withRouter(SearchBar));
+export default withRouter(SearchBar);
