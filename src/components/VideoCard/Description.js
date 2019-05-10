@@ -22,6 +22,16 @@ const Wrapper = styled.div`
     font-size: 13px;
     color: #606060;
   }
+  @media (max-width: 800px) {
+    h2 {
+      max-width: 100vw;
+      margin: 10px;
+    }
+    h3,
+    p {
+      display: none;
+    }
+  }
 `;
 
 const Row = styled.div`
@@ -53,7 +63,7 @@ function Description({ item }) {
 
   return (
     <Wrapper>
-      <h2>{item.snippet.title}</h2>
+      <h2 dangerouslySetInnerHTML={{ __html: item.snippet.title }} />
       <Row>
         <h3>{item.snippet.channelTitle}</h3>
         <h3>{formatViews(item.statistics.viewCount)} vues</h3>
