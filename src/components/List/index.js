@@ -11,6 +11,10 @@ const Wrapper = styled.ul`
   li {
     width: 100%;
   }
+  @media (max-width: 800px) {
+    width: 100vw;
+    margin: 0;
+  }
 `;
 
 function List({ children, items }) {
