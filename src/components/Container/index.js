@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   padding: 20px;
+  margin-top: 50px;
   min-height: calc(100vh - 70px);
   max-width: 100vw;
   @media (max-width: 800px) {
