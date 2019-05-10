@@ -1,26 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Container from '../../components/Container';
 import List from '../../components/List';
 import VideoCard from '../../components/VideoCard';
 
-import { AppContext } from '../../context';
-import { useFetch } from '../../hooks';
+import API from '../../api';
 
-function SearchResults() {
+function SearchResults({ match }) {
   const [data, setData] = useState([]);
-  const { searchResults } = useContext(AppContext);
 
-  let videoIds = '';
-  searchResults.items
-    .filter(item => item.id.videoId)
-    .map(item => (videoIds += item.id.videoId + '%2C'));
+  async function getSearchResults(query) {
+    await setData([]);
+    const queryResults = await API.searchByQuery(query);
 
-  const videoStats = useFetch('getVideosByMultipleIds', [videoIds]);
+    let videoIds = '';
+    queryResults.items
+      .filter(item => item.id.videoId)
+      .map(item => (videoIds += item.id.videoId + '%2C'));
 
-  function populateResultsWithStats() {
+    const videoStats = await API.getVideosByMultipleIds(videoIds);
+    mergeSearchResultsWithStats(queryResults, videoStats);
+  }
+
+  // We do this function to add statistics to each video because
+  // YouTube API doesn't return video stats from the /search endpoint
+  function mergeSearchResultsWithStats(queryResults, videoStats) {
     if (videoStats.items) {
-      searchResults.items
+      queryResults.items
         .filter(item => item.id.videoId)
         .map((item, index) => {
           const newItem = Object.assign(
@@ -30,14 +37,14 @@ function SearchResults() {
               statistics: videoStats.items[index].statistics
             }
           );
-          setData(data => [...data, newItem]);
+          return setData(data => [...data, newItem]);
         });
     }
   }
 
   useEffect(() => {
-    populateResultsWithStats();
-  }, [videoStats]);
+    getSearchResults(match.params.searchQuery);
+  }, [match.params.searchQuery]);
 
   return (
     <Container>
@@ -52,4 +59,4 @@ function SearchResults() {
   );
 }
 
-export default SearchResults;
+export default withRouter(SearchResults);
