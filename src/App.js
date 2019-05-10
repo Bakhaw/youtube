@@ -5,7 +5,6 @@ import { createGlobalStyle } from 'styled-components';
 import Router from './Router';
 import { theme } from './theme';
 import UpdateApp from './components/UpdateApp';
-import { AppProvider } from './context';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -27,11 +26,9 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <AppProvider>
-        <Router />
-        <UpdateApp />
-        <GlobalStyle />
-      </AppProvider>
+      <Router />
+      <UpdateApp />
+      <GlobalStyle />
     </MuiThemeProvider>
   );
 }
