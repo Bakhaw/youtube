@@ -8,6 +8,9 @@ import Description from './Description';
 const Wrapper = styled.div`
   display: flex;
   margin: 6px 0;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 function VideoCard({ item }) {
