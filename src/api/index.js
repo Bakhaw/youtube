@@ -4,7 +4,7 @@ import config from './config';
 const API = {
   getTrendingVideos: async function() {
     try {
-      const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2Cstatistics&chart=mostPopular&regionCode=FR&maxResults=50&key=${
+      const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2Cstatistics&chart=mostPopular&regionCode=FR&maxResults=5&key=${
         config.apiKey
       }`;
       const { data } = await axios.get(url);
@@ -35,9 +35,20 @@ const API = {
       console.log(err);
     }
   },
+  getVideoComments: async function(videoId) {
+    try {
+      const url = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&order=relevance&videoId=${videoId}&key=${
+        config.apiKey
+      }`;
+      const { data } = await axios.get(url);
+      return data.items;
+    } catch (err) {
+      console.log(err);
+    }
+  },
   searchByQuery: async function(query) {
     try {
-      const url = ` https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=${query}&key=${
+      const url = ` https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&key=${
         config.apiKey
       }`;
       const { data } = await axios.get(url);

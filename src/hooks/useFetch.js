@@ -4,14 +4,14 @@ import API from '../api';
 function useFetch(methodName, methodParams = [], initialState = []) {
   const [data, setData] = useState(initialState);
 
-  async function fetchData() {
-    const req = await API[methodName](...methodParams);
-    await setData(req);
-  }
-
   useEffect(() => {
+    async function fetchData() {
+      const req = await API[methodName](...methodParams);
+      await setData(req);
+    }
+
     fetchData();
-  }, [...methodParams]);
+  }, [methodName, ...methodParams]);
 
   return data;
 }
