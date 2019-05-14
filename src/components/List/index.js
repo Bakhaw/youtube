@@ -2,17 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 60vw;
+  justify-content: center;
   align-items: center;
-  width: 60vw;
-  margin: auto;
-  li {
-    width: 100%;
-  }
   @media (max-width: 800px) {
-    width: 100vw;
+    grid-template-columns: 100vw;
+    gap: -30px 0;
     margin: 0;
   }
 `;
