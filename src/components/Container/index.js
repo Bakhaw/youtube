@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   margin-top: 50px;
   min-height: calc(100vh - 70px);
   max-width: 100vw;
+  background: #ffeff6;
   @media (max-width: 800px) {
     padding: 0;
   }
