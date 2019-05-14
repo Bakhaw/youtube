@@ -51,8 +51,8 @@ function Drawer() {
         >
           <List>
             {listItems.map((item, index) => (
-              <Link to={item.linkTo}>
-                <ListItem button key={index}>
+              <Link key={index} to={item.linkTo}>
+                <ListItem button>
                   <Svg type={item.icon} />
                   <ListItemText primary={item.text} />
                 </ListItem>
