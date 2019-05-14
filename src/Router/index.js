@@ -13,7 +13,7 @@ function Router() {
       <>
         <NavBar />
         <Switch>
-          <Route path='/search' component={SearchResults} />
+          <Route path='/search/:searchQuery' component={SearchResults} />
           <Route path='/watch/:videoId' component={Video} />
           <Route path='/trending' component={Trending} />
           <Route path='/' component={Home} />
