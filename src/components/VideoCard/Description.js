@@ -7,7 +7,7 @@ import Eye from '../../assets/eye.svg';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: repeat(5, calc(100% / 5));
+  grid-template-rows: repeat(5, calc(auto / 5));
   padding: 6px 16px;
   h2,
   h3,
