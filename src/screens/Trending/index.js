@@ -7,13 +7,13 @@ import VideoCard from '../../components/VideoCard';
 import { useFetch } from '../../hooks';
 
 function Trending() {
-  const { items } = useFetch('getTrendingVideos');
+  const data = useFetch('getTrendingVideos');
 
-  if (!items) return <Loader />;
+  if (!data || data.length === 0) return <Loader />;
 
   return (
     <Container>
-      <List items={items}>
+      <List items={data.items}>
         {item => (
           <li key={item.id}>
             <VideoCard item={item} />
