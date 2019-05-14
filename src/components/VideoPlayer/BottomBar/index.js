@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Actions from './Actions';
 
 const Wrapper = styled.div`
+  height: 90px;
   width: 100%;
   h2 {
     font-size: 18px;
