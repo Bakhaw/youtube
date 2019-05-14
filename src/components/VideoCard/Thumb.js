@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Image = styled.img`
-  height: 140px;
-  width: 240px;
-  margin-right: 12px;
+  height: 100%;
+  width: 260px;
+  border-radius: 6px 0 0 6px;
   @media (max-width: 800px) {
     height: 250px;
-    width: 100vw;
-    margin: 0;
+    width: 100%;
+    border-radius: 0;
   }
 `;
 
