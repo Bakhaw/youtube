@@ -7,24 +7,22 @@ import VideoCard from '../../components/VideoCard';
 
 import API from '../../api';
 
+// use this for dummy data instead of spamming api
+// and comment useEffect()
+// import dummyData from '../../api/dummy-data';
+
+// const [data, setData] = useState([
+//   ...dummyData,
+//   ...dummyData,
+//   ...dummyData,
+//   ...dummyData
+// ]);
+
 function SearchResults({ match }) {
   const [data, setData] = useState([]);
 
-  async function getSearchResults(query) {
-    await setData([]);
-    const queryResults = await API.searchByQuery(query);
-
-    let videoIds = '';
-    queryResults.items
-      .filter(item => item.id.videoId)
-      .map(item => (videoIds += item.id.videoId + '%2C'));
-
-    const videoStats = await API.getVideosByMultipleIds(videoIds);
-    mergeSearchResultsWithStats(queryResults, videoStats);
-  }
-
-  // We do this function to add statistics to each video because
-  // YouTube API doesn't return video stats from the /search endpoint
+  // ? We do this function to add statistics to each video because
+  // ? YouTube API doesn't return video stats from the /search endpoint
   function mergeSearchResultsWithStats(queryResults, videoStats) {
     if (videoStats.items) {
       queryResults.items
@@ -43,6 +41,19 @@ function SearchResults({ match }) {
   }
 
   useEffect(() => {
+    async function getSearchResults(query) {
+      await setData([]);
+      const queryResults = await API.searchByQuery(query);
+
+      let videoIds = '';
+      queryResults.items
+        .filter(item => item.id.videoId)
+        .map(item => (videoIds += item.id.videoId + '%2C'));
+
+      const videoStats = await API.getVideosByMultipleIds(videoIds);
+      mergeSearchResultsWithStats(queryResults, videoStats);
+    }
+
     getSearchResults(match.params.searchQuery);
   }, [match.params.searchQuery]);
 
