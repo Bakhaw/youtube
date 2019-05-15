@@ -2,22 +2,24 @@ import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styled from 'styled-components';
 
+import Container from '../Container';
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
   div {
-    color: #ff0000;
+    color: #f82076;
   }
 `;
 
 function Loader() {
   return (
-    <Wrapper>
-      <CircularProgress />
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        <CircularProgress />
+      </Wrapper>
+    </Container>
   );
 }
 
