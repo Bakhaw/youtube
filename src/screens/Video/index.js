@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Container from '../../components/Container';
@@ -8,6 +8,13 @@ import { useFetch } from '../../hooks';
 
 import Comments from './Comments';
 import RelatedVideos from './RelatedVideos';
+
+import API from '../../api';
+import {
+  dummyRelatedVideos,
+  dummyVideo,
+  dummyVideoComments
+} from '../../api/dummy-data';
 
 const LeftContentWrapper = styled.div`
   width: 65vw;
@@ -25,14 +32,23 @@ function Video({ match }) {
   const videoComments = useFetch('getVideoComments', [videoId]);
   const relatedVideos = useFetch('getRelatedVideos', [videoId]);
 
+  // const videoDesc = dummyVideo;
+  // const videoComments = dummyVideoComments;
+  // const relatedVideos = dummyRelatedVideos;
+
+  // TODO get video statistics
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (videoDesc.length > 0) {
+      document.title = `${videoDesc[0].snippet.title} - YouTube`;
+    }
+  }, [videoDesc, videoId]);
+
   const isLoading =
     videoDesc.length === 0 ||
     videoComments.length === 0 ||
     relatedVideos.length === 0;
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [videoId]);
 
   if (isLoading) return <Loader />;
 

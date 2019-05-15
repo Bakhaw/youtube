@@ -33,7 +33,6 @@ function Comments({ items }) {
           authorProfileImageUrl,
           textDisplay
         } = item.snippet.topLevelComment.snippet;
-        console.log(item);
         return (
           <li key={item.id}>
             <Comment>
