@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.ul`
   display: grid;
-  grid-template-columns: 60vw;
+  grid-template-columns: ${props => props.columnWidth};
   justify-content: center;
   align-items: center;
   @media (max-width: 800px) {
@@ -13,8 +13,12 @@ const Wrapper = styled.ul`
   }
 `;
 
-function List({ children, items }) {
-  return <Wrapper>{items.map(item => children(item))}</Wrapper>;
+function List({ children, columnWidth = '60vw', items }) {
+  return (
+    <Wrapper columnWidth={columnWidth}>
+      {items.map(item => children(item))}
+    </Wrapper>
+  );
 }
 
 export default List;
