@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Image = styled.img`
   height: 100%;
-  width: ${props => props.thumbWidth};
+  min-width: ${props => props.thumbWidth};
   border-radius: 6px 0 0 6px;
   @media (max-width: 800px) {
     height: 250px;

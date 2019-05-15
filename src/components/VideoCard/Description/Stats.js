@@ -56,8 +56,8 @@ function Stats({ item }) {
   return (
     <Wrapper>
       <h4>
-        <Icon src={Eye} /> 1 000 000
-        {/* {formatViews(item.statistics.viewCount)} */}
+        <Icon src={Eye} />
+        {formatViews(item.statistics ? item.statistics.viewCount : '3604239')}
       </h4>
       <h4>{formattedDate}</h4>
     </Wrapper>
