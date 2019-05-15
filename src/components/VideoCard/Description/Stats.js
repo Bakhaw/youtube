@@ -9,15 +9,21 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  grid-row: 5;
+  align-self: flex-end;
+  grid-row: 3;
   h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-right: 10px;
+    margin: 0 10px 0 0;
+    font-size: 12px;
+    color: #949fbb;
   }
   @media (max-width: 800px) {
     justify-content: flex-end;
+    h4 {
+      display: none;
+    }
   }
 `;
 
@@ -44,14 +50,14 @@ function Stats({ item }) {
   }
 
   const formattedDate = moment(item.snippet.publishedAt)
-    .locale('fr')
+    .locale('en')
     .fromNow();
 
   return (
     <Wrapper>
       <h4>
-        <Icon src={Eye} />
-        {formatViews(item.statistics.viewCount)}
+        <Icon src={Eye} /> 1 000 000
+        {/* {formatViews(item.statistics.viewCount)} */}
       </h4>
       <h4>{formattedDate}</h4>
     </Wrapper>

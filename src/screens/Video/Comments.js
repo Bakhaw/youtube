@@ -5,7 +5,7 @@ import List from '../../components/List';
 
 const Comment = styled.div`
   display: flex;
-  margin: 20px 0;
+  margin: 10px 0;
   h3 {
     margin: 0 10px;
     font-size: 13px;
@@ -31,8 +31,9 @@ function Comments({ items }) {
         const {
           authorDisplayName,
           authorProfileImageUrl,
-          textOriginal
+          textDisplay
         } = item.snippet.topLevelComment.snippet;
+        console.log(item);
         return (
           <li key={item.id}>
             <Comment>
@@ -42,7 +43,7 @@ function Comments({ items }) {
               />
               <div>
                 <h3>{authorDisplayName}</h3>
-                <p>{textOriginal}</p>
+                <p dangerouslySetInnerHTML={{ __html: textDisplay }} />
               </div>
             </Comment>
           </li>
