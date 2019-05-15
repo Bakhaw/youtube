@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: center;
   padding: 20px;
   margin-top: 50px;
   min-height: calc(100vh - 70px); /* 70px is <NavBar /> height */
