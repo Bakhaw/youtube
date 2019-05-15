@@ -7,7 +7,7 @@ import Description from './Description';
 
 const Wrapper = styled.div`
   display: flex;
-  height: 160px;
+  height: {props => props.cardHeight};
   margin: 6px 0;
   background: #fff;
   border-radius: 6px;
@@ -25,12 +25,27 @@ const Wrapper = styled.div`
   }
 `;
 
-function VideoCard({ item }) {
+// This one is insane 😍😍
+const cardSizes = {
+  small: {
+    cardHeight: '70px',
+    thumbWidth: '180px',
+    videoTitleSize: '14px'
+  },
+  default: {
+    cardHeight: '160px',
+    thumbWidth: '260px',
+    videoTitleSize: '16px'
+  }
+};
+
+function VideoCard({ item, size = 'default' }) {
+  const { cardHeight, thumbWidth, videoTitleSize } = cardSizes[size];
   return (
     <Link to={`/watch/${item.id.videoId || item.id}`}>
-      <Wrapper>
-        <Thumb item={item} />
-        <Description item={item} />
+      <Wrapper cardHeight={cardHeight}>
+        <Thumb item={item} thumbWidth={thumbWidth} />
+        <Description item={item} videoTitleSize={videoTitleSize} />
       </Wrapper>
     </Link>
   );
