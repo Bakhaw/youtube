@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
@@ -13,12 +14,16 @@ const Wrapper = styled.ul`
   }
 `;
 
-function List({ children, columnWidth = '60vw', items }) {
+function List({ children, columnWidth, items }) {
   return (
     <Wrapper columnWidth={columnWidth}>
       {items.map(item => children(item))}
     </Wrapper>
   );
 }
+
+List.propTypes = {
+  columnWidth: PropTypes.string.isRequired
+};
 
 export default List;
