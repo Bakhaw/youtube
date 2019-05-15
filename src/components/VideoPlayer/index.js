@@ -22,7 +22,7 @@ function VideoPlayer({ item }) {
         allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
         allowFullScreen
         frameBorder='0'
-        src={`https://www.youtube.com/embed/${item.id}?autoplay=false`}
+        src={`https://www.youtube.com/embed/${item.id}?autoplay=true`}
         title={`video-${item.id}`}
       />
       <BottomBar item={item} />
