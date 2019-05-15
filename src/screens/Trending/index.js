@@ -6,6 +6,8 @@ import Loader from '../../components/Loader';
 import VideoCard from '../../components/VideoCard';
 import { useFetch } from '../../hooks';
 
+// import { dummyVideoList } from '../../api/dummy-data';
+
 function Trending() {
   const data = useFetch('getTrendingVideos');
   const isLoading = !data || data.length === 0;
@@ -14,7 +16,7 @@ function Trending() {
 
   return (
     <Container>
-      <List items={data.items}>
+      <List columnWidth='60vw' items={data.items}>
         {item => (
           <li key={item.id}>
             <VideoCard item={item} />
