@@ -7,11 +7,6 @@ import VideoCard from '../../components/VideoCard';
 
 import API from '../../api';
 
-// * instead of spamming api
-// * uncomment this dummy data
-// * and comment useEffect()
-// import { dummyVideoList } from '../../api/dummy-data';
-
 function SearchResults({ match }) {
   const [data, setData] = useState([]);
 
@@ -34,7 +29,6 @@ function SearchResults({ match }) {
     }
   }
 
-  // * Comment this to use dummy data *
   useEffect(() => {
     async function getSearchResults(query) {
       await setData([]);

@@ -1,19 +1,13 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import Comments from '../../components/Comments';
 import Container from '../../components/Container';
-import List from '../../components/List';
 import Loader from '../../components/Loader';
-import VideoCard from '../../components/VideoCard';
 import VideoPlayer from '../../components/VideoPlayer';
 import { useFetch } from '../../hooks';
 
-// import {
-//   dummyRelatedVideos,
-//   dummyVideo,
-//   dummyVideoComments
-// } from '../../api/dummy-data';
+import Comments from './Comments';
+import RelatedVideos from './RelatedVideos';
 
 const LeftContentWrapper = styled.div`
   width: 65vw;
@@ -31,32 +25,25 @@ function Video({ match }) {
   const videoComments = useFetch('getVideoComments', [videoId]);
   const relatedVideos = useFetch('getRelatedVideos', [videoId]);
 
+  const isLoading =
+    videoDesc.length === 0 ||
+    videoComments.length === 0 ||
+    relatedVideos.length === 0;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [videoId]);
 
-  if (
-    videoDesc.length === 0 ||
-    videoComments.length === 0 ||
-    relatedVideos.length === 0
-  )
-    return <Loader />;
+  if (isLoading) return <Loader />;
 
-  // TODO split this shit code :^)
   return (
     <Container>
       <LeftContentWrapper>
         <VideoPlayer item={videoDesc[0]} />
-        <Comments comments={videoComments} />
+        <Comments items={videoComments} />
       </LeftContentWrapper>
       <RightContentWrapper>
-        <List columnWidth='100%' items={relatedVideos}>
-          {item => (
-            <li key={item.id.videoId}>
-              <VideoCard item={item} size='small' />
-            </li>
-          )}
-        </List>
+        <RelatedVideos items={relatedVideos} />
       </RightContentWrapper>
     </Container>
   );

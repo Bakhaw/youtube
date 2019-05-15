@@ -8,8 +8,9 @@ import { useFetch } from '../../hooks';
 
 function Trending() {
   const data = useFetch('getTrendingVideos');
+  const isLoading = !data || data.length === 0;
 
-  if (!data || data.length === 0) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <Container>
