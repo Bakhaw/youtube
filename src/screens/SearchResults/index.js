@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import Container from '../../components/Container';
 import List from '../../components/List';
+import Loader from '../../components/Loader';
 import VideoCard from '../../components/VideoCard';
 
 import API from '../../api';
@@ -46,9 +47,13 @@ function SearchResults({ match }) {
     getSearchResults(match.params.searchQuery);
   }, [match.params.searchQuery]);
 
+  const isLoading = !data || data.length === 0;
+
+  if (isLoading) return <Loader />;
+
   return (
     <Container>
-      <List items={data}>
+      <List columnWidth='60vw' items={data}>
         {item => (
           <li key={item.id.channelId || item.id.videoId}>
             <VideoCard item={item} />
