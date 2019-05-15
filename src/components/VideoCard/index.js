@@ -7,7 +7,7 @@ import Description from './Description';
 
 const Wrapper = styled.div`
   display: flex;
-  height: {props => props.cardHeight};
+  height: ${props => props.cardHeight};
   margin: 6px 0;
   background: #fff;
   border-radius: 6px;
@@ -28,13 +28,13 @@ const Wrapper = styled.div`
 // This one is insane 😍😍
 const cardSizes = {
   small: {
-    cardHeight: '70px',
+    cardHeight: '130px',
     thumbWidth: '180px',
     videoTitleSize: '14px'
   },
   default: {
     cardHeight: '160px',
-    thumbWidth: '260px',
+    thumbWidth: '230px',
     videoTitleSize: '16px'
   }
 };
