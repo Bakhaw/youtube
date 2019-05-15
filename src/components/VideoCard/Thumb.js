@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Image = styled.img`
   height: 100%;
-  width: 260px;
+  width: ${props => props.thumbWidth};
   border-radius: 6px 0 0 6px;
   @media (max-width: 800px) {
     height: 250px;
@@ -12,8 +12,14 @@ const Image = styled.img`
   }
 `;
 
-function Thumb({ item }) {
-  return <Image alt='Video thumbnail' src={item.snippet.thumbnails.high.url} />;
+function Thumb({ item, thumbWidth }) {
+  return (
+    <Image
+      alt='Video thumbnail'
+      src={item.snippet.thumbnails.high.url}
+      thumbWidth={thumbWidth}
+    />
+  );
 }
 
 export default Thumb;
