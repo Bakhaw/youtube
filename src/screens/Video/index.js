@@ -9,13 +9,6 @@ import { useFetch } from '../../hooks';
 import Comments from './Comments';
 import RelatedVideos from './RelatedVideos';
 
-import API from '../../api';
-import {
-  dummyRelatedVideos,
-  dummyVideo,
-  dummyVideoComments
-} from '../../api/dummy-data';
-
 const LeftContentWrapper = styled.div`
   width: 65vw;
 `;
@@ -31,10 +24,6 @@ function Video({ match }) {
   const videoDesc = useFetch('getVideoById', [videoId]);
   const videoComments = useFetch('getVideoComments', [videoId]);
   const relatedVideos = useFetch('getRelatedVideos', [videoId]);
-
-  // const videoDesc = dummyVideo;
-  // const videoComments = dummyVideoComments;
-  // const relatedVideos = dummyRelatedVideos;
 
   // TODO get video statistics
 
