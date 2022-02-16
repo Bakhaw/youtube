@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkapp_youtube=self.webpackChunkapp_youtube||[]).push([[564],{7564:function(e,u,n){n.r(u);n(2791);var p=n(9794),t=n(184);u.default=function(){return(0,t.jsx)(p.Z,{children:(0,t.jsx)("h1",{children:"Home page"})})}}}]);
+//# sourceMappingURL=564.84ad178a.chunk.js.map
